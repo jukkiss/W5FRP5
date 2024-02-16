@@ -16,7 +16,7 @@ router.post("/", tourController.postTour);
 router.put("/:id", checkRole("admin"), tourController.putTour);
 
 // Delete a tour by ID
-router.delete("/:id", checkRole("admin"), tourController.deleteTour);
+router.delete("/:id", tourController.deleteTour);
 router.patch("/:id", checkRole("admin"), tourController.patchTour);
 
 module.exports = router;
