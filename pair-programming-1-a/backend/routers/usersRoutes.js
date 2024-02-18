@@ -10,7 +10,7 @@ router.get("/", usersController.getUsers);
 router.get("/:id", usersController.getUser);
 
 // Create a New user
-router.post("/", checkRole("admin"), usersController.postUser);
+router.post("/", usersController.postUser);
 
 // Update user by ID
 router.put("/:id", checkRole("admin"), usersController.putUser);
