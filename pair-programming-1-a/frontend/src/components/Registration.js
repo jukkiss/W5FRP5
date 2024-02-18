@@ -1,4 +1,6 @@
 import { useState } from "react";
+import '../app.css'; // Adjust the path according to your file structure
+
 
 const Registration = () => {
   const [email, setEmail] = useState("");
