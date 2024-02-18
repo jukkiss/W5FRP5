@@ -1,19 +1,26 @@
 import { useState } from "react";
-import '../app.css'; // Adjust the path according to your file structure
-
-
+import '../app.css';
 const Registration = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [role, setRole] = useState("guest"); // Default role set to 'guest'
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault(); // Prevents the default form submission behavior
+
+    // Check if passwords match
+    if (password !== confirmPassword) {
+      alert("Passwords do not match.");
+      return;
+    }
 
     const userData = {
       username,
       email,
       role,
+      password, // Assuming your backend handles passwords securely
     };
 
     try {
@@ -49,7 +56,6 @@ const Registration = () => {
           id="username"
           name="username"
           value={username}
-          placeholder="Username"
           onChange={(e) => setUsername(e.target.value)}
           required
         />
@@ -59,7 +65,6 @@ const Registration = () => {
           id="email"
           name="email"
           value={email}
-          placeholder="youremail@example.com"
           onChange={(e) => setEmail(e.target.value)}
           required
         />
@@ -74,6 +79,24 @@ const Registration = () => {
           <option value="guest">Guest</option>
           <option value="admin">Admin</option>
         </select>
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <label htmlFor="confirmPassword">Confirm Password</label>
+        <input
+          type="password"
+          id="confirmPassword"
+          name="confirmPassword"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          required
+        />
         <button type="submit" className="submit-button">
           Register
         </button>
